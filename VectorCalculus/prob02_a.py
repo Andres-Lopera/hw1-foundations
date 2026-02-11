@@ -4,7 +4,11 @@ def Df(z_1,z_2):
     
     ### <--- START OF YOUR CODE
  
-    Df = np.array([[0,0]])
+    df1 = np.exp(z_1) * (1 + z_1 - z_2)
+    df2 = -np.exp(z_1)
+
+    Df = np.array([df1, df2])
+
 
     ### END OF YOUR CODE --->
 
