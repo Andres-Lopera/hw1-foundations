@@ -15,7 +15,28 @@ def h(x_1,x_2,x_3):
 def dfogoh(x_1,x_2,x_3):
     
     ### <--- START OF YOUR CODE
-    dfogoh = np.array(0)
+        # 1) y = h(x)  (shape 2x1)  (memory location {0,0}=y1 row 0 colm 0)
+    y = h(x_1, x_2, x_3)
+    y1 = y[0, 0]
+    y2 = y[1, 0]
+
+    # 2) z = g(y)  (shape 2x1)
+    z = g(y1, y2)
+    z1 = z[0, 0]
+    z2 = z[1, 0]
+
+    # 3) Df at z: shape (2,)
+    grad_f = Df(z1, z2)
+
+    # 4) Dg at y: shape (2,2)
+    J_g = Dg(y1, y2)
+
+    # 5) Dh at x: shape (2,3)
+    J_h = Dh(x_1, x_2, x_3)
+
+    # 6) Chain rule: (1x2)@(2x2)@(2x3) -> (1x3) -> return as (3,)
+    dfogoh = grad_f @ J_g @ J_h
+
     ### END OF YOUR CODE --->
 
     return dfogoh
